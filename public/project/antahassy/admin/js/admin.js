@@ -144,13 +144,15 @@ $(document).ready(function(){
         $('#table_data').on('click', '#btn_activated', function(){
             var id = $(this).attr('data');
             var activ = $(this).attr('alt');
-            var question = '', link_url = '';
+            var question = '', link_url = '', link_deskripsi = '';
             if(activ == 0){
                 question = 'Aktifkan ?';
                 link_url = site + '/list_admin/aktifkan';
+                link_deskripsi = 'Mengaktifkan ';
             }else{
                 question = 'Non Aktifkan ?';
                 link_url = site + '/list_admin/non_aktifkan';
+                link_deskripsi = 'Menonaktifkan ';
             }
             swal({
                 html                : '<pre>' + question + '</pre>',
@@ -180,6 +182,7 @@ $(document).ready(function(){
                                         if(response.success){
                                             swal.close();
                                             setTimeout(function(){
+                                                send_activity(id_menu = '2', activity = link_deskripsi + 'id_user ' + id);
                                                 table_data.ajax.reload();
                                             },300);
                                         }
@@ -232,6 +235,7 @@ $(document).ready(function(){
                                                 timer               : 1000
                                             }).then(function(){
                                                 setTimeout(function(){
+                                                    send_activity(id_menu = '2', activity = 'Menghapus id_user ' + action_data.id);
                                                     table_data.ajax.reload();
                                                 },300);
                                             });
@@ -341,6 +345,7 @@ $(document).ready(function(){
                                                     timer               : 1000
                                                 }).then(function(){
                                                     setTimeout(function(){
+                                                        send_activity(id_menu = '2', activity = response.activity);
                                                         table_data.ajax.reload();
                                                     },300);
                                                 });
@@ -455,6 +460,22 @@ $(document).ready(function(){
                     }
                    }
                ]
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                console.log(resp);
+            }
         });
     }
     function send_error(error, url, form_data){

@@ -73,7 +73,7 @@ $(document).ready(function(){
                                         html        : '<pre>Setting updated successfully</pre>',
                                         type        : "success"
                                     }).then(function(){
-                                        location.reload(true);
+                                        send_activity(id_menu = '5', activity = 'Mengupdate pengaturan sistem');
                                     });
                                 }else{
                                     for (var i = 0; i < response.inputerror.length; i++){
@@ -155,6 +155,22 @@ $(document).ready(function(){
             $('#delete_preview_items2').css('display','none');
             $('#preview_items2').attr('src', '');
             $('#image2, #get_image2').val('');
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                location.reload(true);
+            }
         });
     }
     function send_error(error, url, form_data){

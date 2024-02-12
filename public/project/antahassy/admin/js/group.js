@@ -199,6 +199,7 @@ $(document).ready(function(){
                                                 timer               : 1000
                                             }).then(function(){
                                                 setTimeout(function(){
+                                                    send_activity(id_menu = '4', activity = 'Menghapus id_group ' + action_data.id);
                                                     data_table();
                                                 },300);
                                             });
@@ -278,6 +279,7 @@ $(document).ready(function(){
                                                     timer               : 1000
                                                 }).then(function(){
                                                     setTimeout(function(){
+                                                        send_activity(id_menu = '4', activity = response.activity);
                                                         data_table();
                                                     },300);
                                                 });
@@ -294,6 +296,22 @@ $(document).ready(function(){
                 });
             }
             return false;
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                console.log(resp);
+            }
         });
     }
     function send_error(error, url, form_data){

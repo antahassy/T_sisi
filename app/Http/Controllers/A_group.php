@@ -113,6 +113,7 @@ class A_group extends Controller
         if($data){
             return response()->json([
                 'success'   => true,
+                'activity'  => 'Menambahkan id_group ' . $data->id,
                 'type'      => 'disimpan'
             ]);
         }
@@ -166,6 +167,7 @@ class A_group extends Controller
 
         return response()->json([
             'success'   => true,
+            'activity'  => 'Mengupdate id_group ' . $id,
             'type'      => 'diupdate'
         ]);
     }
@@ -376,6 +378,7 @@ class A_group extends Controller
 
         return response()->json([
             'success'   => true,
+            'activity'  => 'Mengupdate akses menu id_group ' . $id,
             'type'      => 'diupdate'
         ]);
     }

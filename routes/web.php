@@ -8,6 +8,7 @@ use App\Http\Controllers\A_menu;
 use App\Http\Controllers\A_group;
 use App\Http\Controllers\A_setting;
 use App\Http\Controllers\A_error;
+use App\Http\Controllers\A_activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,4 @@ Route::group(['middleware' => 'user_session'], function() {
 	Route::get('test_api', [A_dashboard::class, 'test_api']);
 });
 Route::resource('error', A_error::class);
+Route::resource('activity', A_activity::class);

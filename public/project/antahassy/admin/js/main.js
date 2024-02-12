@@ -12,11 +12,27 @@ $(document).ready(function(){
                 onOpen  : function(){
                     swal.showLoading();
                     setTimeout(function(){
-                        location.href = site + '/admin_logout';
+                        send_activity(id_menu = 0, activity = 'Logout')
                     },300);
                 }
             });
             return false;
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                location.href = site + '/admin_logout';
+            }
         });
     }
 });

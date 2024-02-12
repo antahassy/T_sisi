@@ -209,7 +209,7 @@ $(document).ready(function(){
                                                 html        : '<pre>' + active_menu + ' berhasil diupdate</pre>',
                                                 type        : "success"
                                             }).then(function(){
-                                                location.reload(true);
+                                                send_activity(id_menu = '4', activity = response.activity);
                                             });
                                         }
                                     },
@@ -226,6 +226,22 @@ $(document).ready(function(){
                     });
                 }
             });
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                location.reload(true);
+            }
         });
     }
     function send_error(error, url, form_data){

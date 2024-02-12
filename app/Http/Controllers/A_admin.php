@@ -182,6 +182,7 @@ class A_admin extends Controller
             if($group){
                 return response()->json([
                     'success'   => true,
+                    'activity'  => 'Menambahkan id_user ' . $cek_akun->id,
                     'type'      => 'disimpan'
                 ]);
             }
@@ -302,6 +303,7 @@ class A_admin extends Controller
         if($group){
             return response()->json([
                 'success'   => true,
+                'activity'  => 'Mengupdate id_user ' . $id,
                 'type'      => 'diupdate'
             ]);
         }

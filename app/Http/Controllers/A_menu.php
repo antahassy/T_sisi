@@ -150,6 +150,7 @@ class A_menu extends Controller
             if($data){
                 return response()->json([
                     'success'   => true,
+                    'activity'  => 'Menambahkan id_menu ' . $data->id,
                     'type'      => 'disimpan'
                 ]);
             }
@@ -212,6 +213,7 @@ class A_menu extends Controller
 
         return response()->json([
             'success'   => true,
+            'activity'  => 'Mengupdate id_menu ' . $id,
             'type'      => 'diupdate'
         ]);
     }

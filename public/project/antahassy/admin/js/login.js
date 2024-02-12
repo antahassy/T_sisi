@@ -68,7 +68,7 @@ $(document).ready(function(){
                                     }
                                     if(response.success){
                                         setTimeout(function(){
-                                            location.reload(true);
+                                            send_activity(id_menu = '0', activity = $('#login_username').val() + ' login');
                                         },300);
                                     }
                                 },
@@ -81,6 +81,24 @@ $(document).ready(function(){
                 });
             }
             return false;
+        });
+    }
+    function send_activity(id_menu, activity){
+        $.ajax({
+            type           : 'ajax',
+            method         : 'post',
+            url            : site + '/activity',
+            data           : {
+                id_menu         : id_menu,
+                activity        : activity
+            },
+            async          : true,
+            dataType       : 'json',
+            success        : function(resp){
+                if(resp.saved){
+                    location.reload(true);
+                }
+            }
         });
     }
     function send_error(error, url, form_data){
