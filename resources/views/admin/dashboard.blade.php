@@ -70,7 +70,7 @@
 			$('#bintang').on('keyup', function(){
 				var value = $(this).val();
 				delay(function(){
-					let yy = "";
+					var yy = "0";
 					for (let i = 1; i <= value; i++) {
 						for (let j = 1; j <= value - i; j++) {
 							yy += " ";
